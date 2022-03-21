@@ -7,5 +7,5 @@ class Node {
 }
 
 module.exports = {
-  Node
+  Node,
 };
