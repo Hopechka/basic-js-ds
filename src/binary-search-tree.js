@@ -14,6 +14,7 @@ class BinarySearchTree {
   }
   root() {
     //переименовать root, чтобы не обращался к нему как к методу
+    //https://learn.javascript.ru/class#gettery-settery-drugie-sokrascheniya
     return this._root;
   }
 
@@ -63,7 +64,7 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    this.root = removeNode(this._root, data);
+    this._root = removeNode(this._root, data);
 
     function removeNode(node, value) {
       if (!node) {
