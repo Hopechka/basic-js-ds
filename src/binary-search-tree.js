@@ -78,26 +78,29 @@ class BinarySearchTree {
         return node;
       } else {
         if (!node.left && !node.right) {
+          //проверяем не является ли листом без потомков
           return null;
         }
 
         if (!node.left) {
-          node = node.right;
-          return node;
+          //если нет левого потомка, то точно есть правый потомок
+          node = node.right; // отбросили элемент, и вместо него положили все правое поддерево
+          return node; // возвращаем обнавленный узел
         }
 
         if (!node.right) {
+          //если нет правого потомка, то точно есть левый потомок
           node = node.left;
           return node;
         }
 
-        let minFromRight = node.right;
+        let minFromRight = node.right; //есть оба потомка, поэтому ищем мин. среди правого поддерева
         while (minFromRight.left) {
           minFromRight = minFromRight.left;
         }
-        node.data = minFromRight.data;
+        node.data = minFromRight.data; // помещаем найденный минимум вместо удаляемого значения
 
-        node.right = removeNode(node.right, minFromRight.data);
+        node.right = removeNode(node.right, minFromRight.data); //после, удалить это минимальное значение из поддерева
 
         return node;
       }
