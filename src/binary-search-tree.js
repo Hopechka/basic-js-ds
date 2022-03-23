@@ -95,13 +95,13 @@ class BinarySearchTree {
           return node;
         }
 
-        let minFromRight = node.right; //есть оба потомка, поэтому ищем мин. среди правого поддерева
-        while (minFromRight.left) {
-          minFromRight = minFromRight.left;
+        let maxFromLeft = node.left; //есть оба потомка, поэтому ищем максимальное среди левого поддерева
+        while (maxFromLeft.right) {
+          // перебираем максимальные среди минимальных, пока не найдем максимальное(while(null) - дальше ничего нет)
+          maxFromLeft = maxFromLeft.right;
         }
-        node.data = minFromRight.data; // помещаем найденный минимум вместо удаляемого значения
-
-        node.right = removeNode(node.right, minFromRight.data); //после, удалить это минимальное значение из поддерева
+        node.data = maxFromLeft.data; // помещаем найденный максимум вместо удаляемого значения
+        node.left = removeNode(node.left, maxFromLeft.data); //после, удалить это максимальное значение из поддерева
 
         return node;
       }
