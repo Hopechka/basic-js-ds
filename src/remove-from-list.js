@@ -40,7 +40,15 @@ function removeKFromList(l, k) {
     prev = current;
     current = current.next;
     if (current.value == k) {
-      prev.next = current.next;
+      if (i + 1 != count) {
+        if (current.next.value == k) {
+          prev.next = current.next.next;
+        } else {
+          prev.next = current.next;
+        }
+      } else {
+        prev.next = current.next;
+      }
     }
   }
 
